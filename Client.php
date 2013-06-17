@@ -447,6 +447,7 @@ class Client
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
             curl_setopt($ch, CURLOPT_CAINFO, $this->certificate_file);
+			curl_setopt($ch, CURLOPT_SSLVERSION, 3);
         } else {
             // bypass ssl verification
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
