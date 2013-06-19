@@ -395,7 +395,8 @@ class Client
         $curl_options = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_CUSTOMREQUEST  => $http_method
+            CURLOPT_CUSTOMREQUEST  => $http_method,
+            CURLOPT_SSLVERSION     => 3
         );
 
         switch($http_method) {
@@ -403,7 +404,7 @@ class Client
                 $curl_options[CURLOPT_POST] = true;
                 /* No break */
             case self::HTTP_METHOD_PUT:
-			case self::HTTP_METHOD_PATCH:
+            case self::HTTP_METHOD_PATCH:
 
                 /**
                  * Passing an array to CURLOPT_POSTFIELDS will encode the data as multipart/form-data,
@@ -447,7 +448,6 @@ class Client
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
             curl_setopt($ch, CURLOPT_CAINFO, $this->certificate_file);
-			curl_setopt($ch, CURLOPT_SSLVERSION, 3);
         } else {
             // bypass ssl verification
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
